@@ -36,16 +36,11 @@
       <input type="date" id="expires_on_box" name="query_expires_on">
     </div>
 
-    <div>
-      <label for="board_id_box">
-        Board
-      </label>
-
-      <input type="text" id="board_id_box" name="query_board_id">
-    </div>
+    <input type="hidden" id="board_id_box" name="query_board_id" value=<%= @the_board.id %>>
+    <!-- Note hidden input box with pre-populated board_id -->
 
     <button>
-      Create post
+      Add post
     </button>
   </form>
 </div>
@@ -84,11 +79,55 @@
       </td>
 
       <td>
-        <%= a_post.created_at %>
+        <%= a_post.created_at.strftime("%b %d, %Y") %>
       </td>
 
       <td>
-        <%= a_post.expires_on %>
+        <%= a_post.expires_on.strftime("%b %d, %Y") %>
+      </td>
+
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<div>
+  <h2>Expired posts</h2>
+  <table border="1">
+    <tr>
+      <th>
+        Title
+      </th>
+
+      <th>
+        Body
+      </th>
+
+      <th>
+        Posted on
+      </th>
+
+      <th>
+        Expires on
+      </th>
+    </tr>
+
+    <% @expired_posts.each do |a_post| %>
+    <tr>
+      <td>
+        <%= a_post.title %>
+      </td>
+
+      <td>
+        <%= a_post.body %>
+      </td>
+
+      <td>
+        <%= a_post.created_at.strftime("%b %d, %Y") %>
+      </td>
+
+      <td>
+        <%= a_post.expires_on.strftime("%b %d, %Y") %>
       </td>
 
     </tr>
